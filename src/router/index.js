@@ -6,24 +6,24 @@ Vue.use(VueRouter)
 const routes = [
 	{
 		path: "/",
-		redirect: "/login",
+		redirect: "/login"
 	},
 	{
 		path: "/login",
 		name: "Login",
-		component: () => import("@/views/Login/index.vue"),
+		component: () => import("@/views/Login/index.vue")
 	},
 	{
 		path: "/home",
 		name: "home",
-		component: () => import("@/views/Home/index.vue"),
-	},
+		component: () => import("@/views/Home/index.vue")
+	}
 ]
 
 const router = new VueRouter({
-	mode: "history",
+	// mode: "history",
 	base: process.env.BASE_URL,
-	routes,
+	routes
 })
 
 export default router
