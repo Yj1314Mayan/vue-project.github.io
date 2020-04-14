@@ -8,6 +8,7 @@ import "@/api/service"
 import "@/style/reset.scss"
 import ElementUI from "element-ui"
 import "element-ui/lib/theme-chalk/index.css"
+import Ripple from "vue-ripple-directive"
 
 Vue.use(ElementUI)
 
@@ -17,6 +18,10 @@ Vue.use(ElementUI, {
 })
 
 Vue.config.productionTip = false
+
+// 添加 波纹自定义指令
+Ripple.color = "rgba(64,158,255, 0.35)"
+Vue.directive("ripple", Ripple)
 
 new Vue({
 	router,

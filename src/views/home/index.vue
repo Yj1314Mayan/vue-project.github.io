@@ -11,7 +11,14 @@
 				<Header ref="Header"></Header>
 			</el-header>
 			<!-- 主体 -->
-			<el-main>Main</el-main>
+			<el-main>
+				<!-- 路由缓存 -->
+				<elTab></elTab>
+				<!-- 页面入口 -->
+				<keep-alive>
+					<router-view></router-view>
+				</keep-alive>
+			</el-main>
 		</el-container>
 	</el-container>
 </template>
@@ -19,11 +26,13 @@
 <script>
 import elMenu from "@/views/Home/components/el-menu.vue"
 import Header from "@/views/Home/components/el-header.vue"
+import elTab from "@/views/Home/components/el-tab.vue"
 import { mapState } from "vuex"
 export default {
 	components: {
 		elMenu,
-		Header
+		Header,
+		elTab
 	},
 	computed: {
 		...mapState({
@@ -39,6 +48,7 @@ export default {
 	height: 100%;
 }
 .el-main {
+	padding: 0;
 	background-color: #f0f2f5;
 }
 .el-header {
