@@ -15,9 +15,11 @@
 				<!-- 路由缓存 -->
 				<elTab></elTab>
 				<!-- 页面入口 -->
-				<keep-alive>
-					<router-view></router-view>
-				</keep-alive>
+				<div class="main">
+					<keep-alive>
+						<router-view></router-view>
+					</keep-alive>
+				</div>
 			</el-main>
 		</el-container>
 	</el-container>
@@ -32,13 +34,13 @@ export default {
 	components: {
 		elMenu,
 		Header,
-		elTab
+		elTab,
 	},
 	computed: {
 		...mapState({
-			isCollapse: state => state.home.isCollapse
-		})
-	}
+			isCollapse: (state) => state.home.isCollapse,
+		}),
+	},
 }
 </script>
 
@@ -48,12 +50,18 @@ export default {
 	height: 100%;
 }
 .el-main {
-	padding: 0;
+	padding: 40px 0 0 0;
 	background-color: #f0f2f5;
+	position: relative;
 }
 .el-header {
 	height: 50px !important;
 	line-height: 50px;
 	padding: 0;
+}
+.main {
+	background-color: #fff;
+	width: 100%;
+	height: 100%;
 }
 </style>

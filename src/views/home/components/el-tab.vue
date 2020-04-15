@@ -31,9 +31,12 @@ export default {}
 
 <style lang="scss">
 .home-tab {
+	position: absolute;
+	left: 0;
+	top: 5px;
 	height: 30px;
+	width: 100%;
 	line-height: 30px;
-	margin-top: 5px;
 	background-color: #fff;
 	display: flex;
 
