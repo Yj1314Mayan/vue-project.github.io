@@ -21,14 +21,14 @@ const routes = [
 			{
 				path: "/home",
 				name: "homePage",
-				component: () => import("@/views/HomePage/index.vue"),
+				component: () => import("@/compoments/Home/index.vue"),
 			},
 		],
 	},
 ]
 
 const router = new VueRouter({
-	// mode: "history",
+	mode: "history",
 	base: process.env.BASE_URL,
 	routes,
 })

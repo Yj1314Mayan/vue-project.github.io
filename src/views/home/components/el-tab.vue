@@ -5,7 +5,11 @@
 		</div>
 		<div class="home-tab-content">
 			<div class="home-tab-content-tag">
-				<span class="ative">首页</span>
+				<span class="ative">首页 </span>
+				<span
+					>首页
+					<i class="el-icon-close" />
+				</span>
 			</div>
 		</div>
 		<div class="home-tab-right">
@@ -29,7 +33,7 @@
 export default {}
 </script>
 
-<style lang="scss">
+<style lang="scss" scope>
 .home-tab {
 	position: absolute;
 	left: 0;
@@ -56,7 +60,7 @@ export default {}
 
 		span {
 			display: inline-block;
-			padding: 0 10px;
+			padding: 0 22px 0 10px;
 			box-sizing: border-box;
 			height: 22px;
 			line-height: 22px;
@@ -64,6 +68,23 @@ export default {}
 			border: 1px solid #409eff;
 			border-radius: 4px;
 			background-color: #fff;
+			margin: 0 5px;
+			position: relative;
+			&:first-child {
+				padding: 0 10px;
+			}
+			i {
+				position: absolute;
+				right: 3px;
+				top: 3px;
+				padding: 1px;
+				line-height: 13px;
+				&:hover {
+					background-color: #409eff;
+					color: #fff;
+					border-radius: 50%;
+				}
+			}
 		}
 		.ative {
 			background-color: #409eff;
