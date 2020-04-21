@@ -148,6 +148,5 @@ export default {
 <style lang="scss" scope>
 .home-page {
   display: flex;
-  padding: 40px;
 }
 </style>

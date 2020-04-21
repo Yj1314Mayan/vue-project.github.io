@@ -23,6 +23,11 @@ const routes = [
 				name: "homePage",
 				component: () => import("@/compoments/Home/index.vue"),
 			},
+			{
+				path: "/table",
+				name: "table",
+				component: () => import("@/views/Table/index.vue"),
+			},
 		],
 	},
 ]
