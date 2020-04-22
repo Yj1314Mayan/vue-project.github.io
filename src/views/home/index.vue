@@ -16,7 +16,7 @@
         <elTab></elTab>
         <!-- 页面入口 -->
         <div class="main">
-          <transition name="slide-fade">
+          <transition name="fade-transform" mode="out-in">
             <keep-alive>
               <router-view></router-view>
             </keep-alive>
@@ -67,15 +67,18 @@ export default {
   height: 100%;
   padding: 40px;
 }
-.slide-fade-enter-active {
-  transition: all 0.3s ease;
+.fade-transform-leave-active,
+.fade-transform-enter-active {
+  transition: all 0.5s;
 }
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active for below version 2.1.8 */ {
-  transform: translateX(10px);
+
+.fade-transform-enter {
   opacity: 0;
+  transform: translateX(-30px);
+}
+
+.fade-transform-leave-to {
+  opacity: 0;
+  transform: translateX(30px);
 }
 </style>

@@ -3,7 +3,8 @@
     <div class="header">
       <img :class="!isCollapse ? 'img' : ''" src="@/assets/logo.jpg" alt="" />
     </div>
-    <el-menu default-active="1-1" :collapse-transition="false" class="el-menu-vertical-demo" background-color="rgb(48, 65, 86)" text-color="rgb(191, 203, 217)" @open="handleOpen" @close="handleClose" router  :collapse="!isCollapse">
+    <el-menu default-active="1-1" :collapse-transition="false" class="el-menu-vertical-demo" background-color="rgb(48, 65, 86)" text-color="rgb(191, 203, 217)" router :collapse="!isCollapse"
+      @select="setMenu">
       <el-menu-item index="Table">
         <i class="el-icon-s-order"></i>
         <span slot="title">Table</span>
@@ -25,19 +26,19 @@
 </template>
 
 <script>
-import { mapState } from "vuex"
+import { mapState, mapMutations } from "vuex"
 export default {
   computed: {
     ...mapState({
       isCollapse: (state) => state.home.isCollapse,
+      menus: (state) => state.router.menus,
     }),
   },
   methods: {
-    handleOpen (key, keyPath) {
-      console.log(key, keyPath)
-    },
-    handleClose (key, keyPath) {
-      console.log(key, keyPath)
+    ...mapMutations(['setMenus', 'setmenusAtive']),
+    setMenu (index) {
+      this.setMenus(index)
+      this.setmenusAtive(this.menus.length)
     },
   },
 }
