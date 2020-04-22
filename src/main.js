@@ -14,7 +14,7 @@ Vue.use(ElementUI)
 
 // 国际化语言配置
 Vue.use(ElementUI, {
-	i18n: (key, value) => i18n.t(key, value)
+	i18n: (key, value) => i18n.t(key, value),
 })
 
 Vue.config.productionTip = false
@@ -27,5 +27,5 @@ new Vue({
 	router,
 	store,
 	i18n,
-	render: h => h(App)
+	render: (h) => h(App),
 }).$mount("#app")

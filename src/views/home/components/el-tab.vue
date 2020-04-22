@@ -5,9 +5,9 @@
     </div>
     <div class="home-tab-content">
       <div class="home-tab-content-tag">
-        <span :class="`${ menusAtive == 0 ? 'ative' : ''}`" @click="setMenusAtive(0, 'home')">首页 </span>
-        <span :class="`${ (index + 1) == menusAtive ? 'ative' : ''}`" v-for="(item, index) in menus" :key="index" @click="setMenusAtive((index + 1), item)">{{item}}
-          <i class="el-icon-close" @click="removeMenu(item)" />
+        <span :class="`${ menusAtive == 0 ? 'ative' : ''}`" @click="setAtive(0, 'home')">首页 </span>
+        <span :class="`${ (index + 1) == menusAtive ? 'ative' : ''}`" v-for="(item, index) in menus" :key="index" @click="setAtive((index + 1), item)">{{item}}
+          <i class="el-icon-close" @click.stop="removeMenu(item)" />
         </span>
       </div>
     </div>
@@ -42,18 +42,16 @@ export default {
     removeMenu (item) {
       this.removeMenus(item)
       if (this.menus.length < 2) {
-        this.$router.push('home')
+        this.$router.push("home")
         this.setmenusAtive(0)
-        console.log('------------');
       } else {
         let path = this.menus[this.menus.length - 1]
         this.setmenusAtive(this.menus.length)
         this.$router.push(path)
-        console.log('11111111111111');
       }
     },
     // 切换显示时候使用
-    setMenusAtive (val, path) {
+    setAtive (val, path) {
       this.setmenusAtive(val)
       this.$router.push(path)
     }
