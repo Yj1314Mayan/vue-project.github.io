@@ -3,7 +3,7 @@
     <div class="header">
       <img :class="!isCollapse ? 'img' : ''" src="@/assets/logo.jpg" alt="" />
     </div>
-    <el-menu default-active="1-1" :collapse-transition="false" class="el-menu-vertical-demo" background-color="rgb(48, 65, 86)" text-color="rgb(191, 203, 217)" router :collapse="!isCollapse"
+    <el-menu :default-active="menusAtive" :collapse-transition="false" class="el-menu-vertical-demo" background-color="rgb(48, 65, 86)" text-color="rgb(191, 203, 217)" router :collapse="!isCollapse"
       @select="setMenu">
       <el-menu-item index="Table">
         <i class="el-icon-s-order"></i>
@@ -32,13 +32,17 @@ export default {
     ...mapState({
       isCollapse: (state) => state.home.isCollapse,
       menus: (state) => state.router.menus,
+      menusAtive: (state) => state.router.menusAtive,
     }),
   },
   methods: {
-    ...mapMutations(['setMenus', 'setmenusAtive']),
-    setMenu (index) {
-      this.setMenus(index)
-      this.setmenusAtive(this.menus.length)
+    ...mapMutations(["setMenus", "setmenusAtive"]),
+    setMenu (index, indexPath) {
+      this.setMenus({
+        name: index,
+        path: indexPath[0]
+      })
+      this.setmenusAtive(indexPath[0])
     },
   },
 }
