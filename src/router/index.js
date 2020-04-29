@@ -7,8 +7,7 @@ VueRouter.prototype.push = function push(location) {
 
 Vue.use(VueRouter)
 
-const routes = [
-	{
+const routes = [{
 		path: "/",
 		redirect: "/login",
 	},
@@ -21,8 +20,7 @@ const routes = [
 		path: "/home",
 		name: "home",
 		component: () => import("@/views/Home/index.vue"),
-		children: [
-			{
+		children: [{
 				path: "/home",
 				name: "homePage",
 				component: () => import("@/compoments/Home/index.vue"),
@@ -37,7 +35,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-	mode: "history",
+	// mode: "history",
 	base: process.env.BASE_URL,
 	routes,
 })

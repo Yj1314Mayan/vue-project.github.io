@@ -1,5 +1,6 @@
 <template>
   <div>
+    <el-button @click="add" size="small" type="primary">主要按钮</el-button>
     <el-table :data="tableData" style="width: 100%" :row-class-name="tableRowClassName">
       <el-table-column prop="date" label="日期" width="180">
       </el-table-column>
@@ -9,10 +10,8 @@
       </el-table-column>
       <el-table-column label="操作" width="120">
         <template slot-scope="scope">
-          <el-button
-          type="text"
-          size="small">
-          移除
+          <el-button type="primary" size="mini">
+            移除
           </el-button>
         </template>
       </el-table-column>
@@ -20,15 +19,6 @@
   </div>
 </template>
 
-<style>
-.el-table .warning-row {
-  background: oldlace;
-}
-
-.el-table .success-row {
-  background: #f0f9eb;
-}
-</style>
 
 <script>
 export default {
@@ -40,6 +30,13 @@ export default {
         return 'success-row';
       }
       return '';
+    },
+    add () {
+      this.tableData.push({
+        date: '2016-05-02',
+        name: '王小虎',
+        address: '上海市普陀区金沙江路 1518 弄',
+      })
     }
   },
   data () {
@@ -65,3 +62,13 @@ export default {
   }
 }
 </script>
+
+<style>
+.el-table .warning-row {
+  background: oldlace;
+}
+
+.el-table .success-row {
+  background: #f0f9eb;
+}
+</style>
