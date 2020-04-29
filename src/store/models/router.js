@@ -13,6 +13,9 @@ const mutations = {
 	removeMenus(state, menu) {
 		state.menus.splice(state.menus.indexOf(menu));
 	},
+	resetMenus(state) {
+		state.menus = []
+	}
 };
 
 export default {

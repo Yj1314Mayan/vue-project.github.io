@@ -15,8 +15,8 @@
           <i class="el-icon-circle-close"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>关闭当前</el-dropdown-item>
-          <el-dropdown-item>关闭所有</el-dropdown-item>
+          <el-dropdown-item @click.native="removeMenu(menusAtive)">关闭当前</el-dropdown-item>
+          <el-dropdown-item @click.native="shutDownAll">关闭所有</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -34,7 +34,7 @@ export default {
     }),
   },
   methods: {
-    ...mapMutations(["removeMenus", "setmenusAtive"]),
+    ...mapMutations(["removeMenus", "setmenusAtive", 'resetMenus']),
     removeMenu (item) {
       this.removeMenus(item)
       if (this.menus.length < 2) {
@@ -51,6 +51,7 @@ export default {
       this.setmenusAtive(path)
       this.$router.push(path)
     },
+    // 滚动事件
     verScroll () {
       let width = this.menus.length + 1 * 180 // 动态计算出滚动区域的大小，前面已经说过了，产生滚动的原因是滚动区域宽度大于父盒子宽度
       this.$refs.cont.style.width = width + "px" // 修改滚动区域的宽度
@@ -68,6 +69,11 @@ export default {
         }
       })
     },
+    shutDownAll() {
+      this.resetMenus()
+      this.$router.push("home")
+      this.setmenusAtive("home")
+    }
   },
   mounted () {
     this.$nextTick(() => {

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="header">
+    <div class="header" @click="toHome">
       <img :class="!isCollapse ? 'img' : ''" src="@/assets/logo.jpg" alt="" />
     </div>
     <el-menu :default-active="menusAtive" :collapse-transition="false" class="el-menu-vertical-demo" background-color="rgb(48, 65, 86)" text-color="rgb(191, 203, 217)" router :collapse="!isCollapse"
@@ -44,6 +44,10 @@ export default {
       })
       this.setmenusAtive(indexPath[0])
     },
+    toHome() {
+      this.$router.push("home")
+      this.setmenusAtive("home")
+    }
   },
 }
 </script>
