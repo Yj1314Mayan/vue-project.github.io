@@ -10,6 +10,12 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Ripple from 'vue-ripple-directive'
 import _ from 'lodash'
+import VueQuillEditor from 'vue-quill-editor' //调用编辑器
+// require styles 引入样式
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+Vue.use(VueQuillEditor)
 
 Vue.use(ElementUI)
 

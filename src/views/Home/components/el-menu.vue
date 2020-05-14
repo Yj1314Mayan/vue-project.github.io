@@ -3,16 +3,27 @@
     <div class="header" @click="toHome">
       <img :class="!isCollapse ? 'img' : ''" src="@/assets/logo.jpg" alt="" />
     </div>
-    <el-menu :default-active="menusAtive" :collapse-transition="false" class="el-menu-vertical-demo" background-color="rgb(48, 65, 86)" text-color="rgb(191, 203, 217)" router :collapse="!isCollapse"
-      @select="setMenu">
+    <el-menu
+      :default-active="menusAtive"
+      :collapse-transition="false"
+      class="el-menu-vertical-demo"
+      background-color="rgb(48, 65, 86)"
+      text-color="rgb(191, 203, 217)"
+      router
+      :collapse="!isCollapse"
+      @select="setMenu"
+    >
       <el-menu-item index="Table">
         <i class="el-icon-s-order"></i>
         <span slot="title">Table</span>
       </el-menu-item>
-      <el-menu-item index="2">
-        <i class="el-icon-menu"></i>
-        <span slot="title">导航二</span>
-      </el-menu-item>
+      <el-submenu index="1">
+        <template slot="title">
+          <i class="el-icon-menu"></i>
+          <span slot="title">组件</span>
+        </template>
+        <el-menu-item index="quillEditor">富文本编辑器</el-menu-item>
+      </el-submenu>
       <el-menu-item index="3">
         <i class="el-icon-document"></i>
         <span slot="title">导航三</span>
@@ -26,7 +37,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from "vuex"
+import { mapState, mapMutations } from "vuex";
 export default {
   computed: {
     ...mapState({
@@ -37,19 +48,19 @@ export default {
   },
   methods: {
     ...mapMutations(["setMenus", "setmenusAtive"]),
-    setMenu (index, indexPath) {
+    setMenu(index, indexPath) {
       this.setMenus({
         name: index,
-        path: indexPath[0]
-      })
-      this.setmenusAtive(indexPath[0])
+        path: indexPath[indexPath.length - 1],
+      });
+      this.setmenusAtive(index);
     },
     toHome() {
-      this.$router.push("home")
-      this.setmenusAtive("home")
-    }
+      this.$router.push("home");
+      this.setmenusAtive("home");
+    },
   },
-}
+};
 </script>
 
 <style lang="scss" scope>

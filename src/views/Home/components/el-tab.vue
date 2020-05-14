@@ -2,9 +2,17 @@
   <div class="home-tab">
     <div class="home-tab-content" ref="wrapper">
       <div class="home-tab-content-tag" ref="cont">
-        <span :class="`${menusAtive == 'home' ? 'ative' : ''}`" @click="setAtive('home')">首页
+        <span
+          :class="`${menusAtive == 'home' ? 'ative' : ''}`"
+          @click="setAtive('home')"
+          >首页
         </span>
-        <span :class="`${menusAtive == item.path ? 'ative' : ''}`" v-for="(item, index) in menus" :key="index" @click="setAtive(item.path)">{{ item.name }}
+        <span
+          :class="`${menusAtive == item.path ? 'ative' : ''}`"
+          v-for="(item, index) in menus"
+          :key="index"
+          @click="setAtive(item.path)"
+          >{{ item.name }}
           <i class="el-icon-close" @click.stop="removeMenu(item)" />
         </span>
       </div>
@@ -15,8 +23,12 @@
           <i class="el-icon-circle-close"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="removeMenu(menusAtive)">关闭当前</el-dropdown-item>
-          <el-dropdown-item @click.native="shutDownAll">关闭所有</el-dropdown-item>
+          <el-dropdown-item @click.native="removeMenu(menusAtive)"
+            >关闭当前</el-dropdown-item
+          >
+          <el-dropdown-item @click.native="shutDownAll"
+            >关闭所有</el-dropdown-item
+          >
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -24,8 +36,8 @@
 </template>
 
 <script>
-import BScroll from "better-scroll"
-import { mapState, mapMutations } from "vuex"
+import BScroll from "better-scroll";
+import { mapState, mapMutations } from "vuex";
 export default {
   computed: {
     ...mapState({
@@ -33,28 +45,32 @@ export default {
       menusAtive: (state) => state.router.menusAtive,
     }),
   },
+  watch: {
+    menusAtive(newVal, oldVal) {
+      this.verScroll();
+    },
+  },
   methods: {
-    ...mapMutations(["removeMenus", "setmenusAtive", 'resetMenus']),
-    removeMenu (item) {
-      this.removeMenus(item)
-      if (this.menus.length < 2) {
-        this.$router.push("home")
-        this.setmenusAtive("home")
+    ...mapMutations(["removeMenus", "setmenusAtive", "resetMenus"]),
+    removeMenu(item) {
+      this.removeMenus(item);
+      if (this.menus.length < 1) {
+        this.$router.push("home");
+        this.setmenusAtive("home");
       } else {
-        let item = this.menus[this.menus.length - 1]
-        this.setmenusAtive(this.menus.length)
-        this.$router.push(item.path)
+        this.setmenusAtive(this.menus[this.menus.length - 1].path);
+        this.$router.push(this.menus[this.menus.length - 1].path);
       }
     },
     // 切换显示时候使用
-    setAtive (path) {
-      this.setmenusAtive(path)
-      this.$router.push(path)
+    setAtive(path) {
+      this.setmenusAtive(path);
+      this.$router.push(path);
     },
     // 滚动事件
-    verScroll () {
-      let width = this.menus.length + 1 * 180 // 动态计算出滚动区域的大小，前面已经说过了，产生滚动的原因是滚动区域宽度大于父盒子宽度
-      this.$refs.cont.style.width = width + "px" // 修改滚动区域的宽度
+    verScroll() {
+      let width = (this.menus.length + 1) * 180; // 动态计算出滚动区域的大小，前面已经说过了，产生滚动的原因是滚动区域宽度大于父盒子宽度
+      this.$refs.cont.style.width = width + "px"; // 修改滚动区域的宽度
       this.$nextTick(() => {
         if (!this.scroll) {
           this.scroll = new BScroll(this.$refs.wrapper, {
@@ -63,30 +79,30 @@ export default {
             scrollX: true,
             scrollY: false,
             eventPassthrough: "vertical",
-          })
+          });
         } else {
-          this.scroll.refresh() //如果dom结构发生改变调用该方法
+          this.scroll.refresh(); //如果dom结构发生改变调用该方法
         }
-      })
+      });
     },
     shutDownAll() {
-      this.resetMenus()
-      this.$router.push("home")
-      this.setmenusAtive("home")
-    }
+      this.resetMenus();
+      this.$router.push("home");
+      this.setmenusAtive("home");
+    },
   },
-  mounted () {
+  mounted() {
     this.$nextTick(() => {
       let timer = setTimeout(() => {
         // 其实我也不想写这个定时器的，这相当于又嵌套了一层$nextTick，但是不这么写会失败
         if (timer) {
-          clearTimeout(timer)
-          this.verScroll()
+          clearTimeout(timer);
+          this.verScroll();
         }
-      }, 0)
-    })
+      }, 0);
+    });
   },
-}
+};
 </script>
 
 <style lang="scss" scope>
