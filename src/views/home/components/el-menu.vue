@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="header" @click="toHome">
-      <img :class="!isCollapse ? 'img' : ''" src="@/assets/logo.jpg" alt="" />
+      <img :class="!isCollapse ? 'img' : ''" src="@/assets/logo.jpg" alt />
     </div>
     <el-menu
       :default-active="menusAtive"
@@ -48,14 +48,14 @@ export default {
   },
   methods: {
     ...mapMutations(["setMenus", "setmenusAtive"]),
-    setMenu(index, indexPath) {
+    setMenu (index, indexPath) {
       this.setMenus({
         name: index,
         path: indexPath[indexPath.length - 1],
       });
       this.setmenusAtive(index);
     },
-    toHome() {
+    toHome () {
       this.$router.push("home");
       this.setmenusAtive("home");
     },

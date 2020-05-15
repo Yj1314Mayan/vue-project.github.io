@@ -2,17 +2,9 @@
   <div class="home-tab">
     <div class="home-tab-content" ref="wrapper">
       <div class="home-tab-content-tag" ref="cont">
-        <span
-          :class="`${menusAtive == 'home' ? 'ative' : ''}`"
-          @click="setAtive('home')"
-          >首页
-        </span>
-        <span
-          :class="`${menusAtive == item.path ? 'ative' : ''}`"
-          v-for="(item, index) in menus"
-          :key="index"
-          @click="setAtive(item.path)"
-          >{{ item.name }}
+        <span :class="`${menusAtive == 'home' ? 'ative' : ''}`" @click="setAtive('home')">首页</span>
+        <span :class="`${menusAtive == item.path ? 'ative' : ''}`" v-for="(item, index) in menus" :key="index" @click="setAtive(item.path)">
+          {{ item.name }}
           <i class="el-icon-close" @click.stop="removeMenu(item)" />
         </span>
       </div>
@@ -23,12 +15,8 @@
           <i class="el-icon-circle-close"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item @click.native="removeMenu(menusAtive)"
-            >关闭当前</el-dropdown-item
-          >
-          <el-dropdown-item @click.native="shutDownAll"
-            >关闭所有</el-dropdown-item
-          >
+          <el-dropdown-item @click.native="removeMenu(menusAtive)">关闭当前</el-dropdown-item>
+          <el-dropdown-item @click.native="shutDownAll">关闭所有</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -41,14 +29,14 @@ import { mapState, mapMutations } from "vuex";
 export default {
   computed: {
     ...mapState({
-      menus: (state) => state.router.menus,
-      menusAtive: (state) => state.router.menusAtive,
-    }),
+      menus: state => state.router.menus,
+      menusAtive: state => state.router.menusAtive
+    })
   },
   watch: {
     menusAtive(newVal, oldVal) {
       this.verScroll();
-    },
+    }
   },
   methods: {
     ...mapMutations(["removeMenus", "setmenusAtive", "resetMenus"]),
@@ -78,7 +66,7 @@ export default {
             click: true,
             scrollX: true,
             scrollY: false,
-            eventPassthrough: "vertical",
+            eventPassthrough: "vertical"
           });
         } else {
           this.scroll.refresh(); //如果dom结构发生改变调用该方法
@@ -89,7 +77,7 @@ export default {
       this.resetMenus();
       this.$router.push("home");
       this.setmenusAtive("home");
-    },
+    }
   },
   mounted() {
     this.$nextTick(() => {
@@ -101,7 +89,7 @@ export default {
         }
       }, 0);
     });
-  },
+  }
 };
 </script>
 
