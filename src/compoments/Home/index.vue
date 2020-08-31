@@ -2,6 +2,7 @@
   <div class="home-page">
     <Echarts :orgOptions="orgOptions" width="39%" height="600px"></Echarts>
     <Echarts :orgOptions="orgOptionsData" width="60%" height="600px"></Echarts>
+    <button @click="toRouter"></button>
   </div>
 </template>
 
@@ -142,6 +143,16 @@ export default {
       data: [],
     }
   },
+  methods: {
+    toRouter () {
+      this.$router.push({
+        path: '/table',
+        query: {
+          id: Math.random()
+        }
+      })
+    }
+  }
 }
 </script>
 
