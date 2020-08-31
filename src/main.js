@@ -2,7 +2,6 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import i18n from './lang'
 import '@/utils/permission'
 import '@/api/service'
 import '@/style/reset.scss'
@@ -22,11 +21,6 @@ let app = null
 Vue.use(VueQuillEditor)
 
 Vue.use(ElementUI)
-
-// 国际化语言配置
-Vue.use(ElementUI, {
-  i18n: (key, value) => i18n.t(key, value),
-})
 
 // 引入工具函数
 Vue.prototype._ = _
