@@ -8,6 +8,7 @@ import '@/api/service'
 import '@/style/reset.scss'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
+import { registerMicroApps, setDefaultMountApp, start } from 'qiankun'
 import Ripple from 'vue-ripple-directive'
 import _ from 'lodash'
 import VueQuillEditor from 'vue-quill-editor' //调用编辑器
@@ -15,6 +16,9 @@ import VueQuillEditor from 'vue-quill-editor' //调用编辑器
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+
+let app = null
+
 Vue.use(VueQuillEditor)
 
 Vue.use(ElementUI)
