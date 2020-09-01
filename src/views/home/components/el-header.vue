@@ -10,21 +10,6 @@
       <!-- 全屏展示 -->
       <Screenfull />
 
-      <!-- <div class="header-right-international">
-				<el-dropdown>
-					<span class="el-dropdown-link">
-						<img src="@/assets/language.jpg" alt="" />
-					</span>
-					<el-dropdown-menu slot="dropdown">
-						<el-dropdown-item @click.native="changeLocale('zh')"
-							>中文</el-dropdown-item
-						>
-						<el-dropdown-item @click.native="changeLocale('en')"
-							>English</el-dropdown-item
-						>
-					</el-dropdown-menu>
-				</el-dropdown>
-			</div> -->
       <div class="header-right-personal">
         <el-dropdown>
           <span class="el-dropdown-link">
@@ -74,14 +59,6 @@ export default {
           })
         })
         .catch(() => { })
-    },
-    changeLocale (val) {
-      console.log(111, this.$i18n.locale)
-      if (val == "zh") {
-        this.$i18n.locale = "zh"
-      } else if (val == "en") {
-        this.$i18n.locale = "en"
-      }
     },
   },
 }

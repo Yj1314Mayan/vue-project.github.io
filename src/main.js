@@ -7,7 +7,12 @@ import '@/api/service'
 import '@/style/reset.scss'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
-import { registerMicroApps, setDefaultMountApp, start } from 'qiankun'
+import {
+  registerMicroApps,
+  start,
+  initGlobalState,
+  runAfterFirstMounted,
+} from 'qiankun'
 import Ripple from 'vue-ripple-directive'
 import _ from 'lodash'
 import VueQuillEditor from 'vue-quill-editor' //调用编辑器
@@ -16,7 +21,61 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-let app = null
+registerMicroApps(
+  [
+    {
+      name: 'app1',
+      entry: '//localhost:8081',
+      container: '#app',
+      activeRule: '/quillEditor',
+      props: {
+        store,
+        data: {
+          name: 'child1 value',
+          age: 1234,
+        },
+        myname: 'child1 value',
+      },
+    },
+    {
+      name: 'app2',
+      entry: '//localhost:8081',
+      container: '#app',
+      activeRule: '/quillEditor',
+      props: {
+        myname: 'child2 value',
+      },
+    },
+  ],
+  {
+    beforeLoad: (app) => console.log('before load', app.name),
+    beforeMount: [(app) => console.log('before mount', app.name)],
+    afterMount: (app) => {
+      console.log('aftermount: ', app.name)
+    },
+    afterUnmount: (app) => {
+      console.log('afterUnmount', app.name)
+    },
+  }
+)
+
+const state = {
+  count: 0,
+  wrap: {
+    name: 'lisper',
+    age: 1,
+  },
+}
+const action = initGlobalState(state)
+
+runAfterFirstMounted(() => {
+  console.log('runAfterFirstMounted')
+})
+
+action.onGlobalStateChange((state, prev) => {
+  console.log('root:')
+  console.log(state)
+})
 
 Vue.use(VueQuillEditor)
 
@@ -31,9 +90,10 @@ Vue.config.productionTip = false
 Ripple.color = 'rgba(64,158,255, 0.35)'
 Vue.directive('ripple', Ripple)
 
+start()
+
 new Vue({
   router,
   store,
-  i18n,
   render: (h) => h(App),
 }).$mount('#app')
