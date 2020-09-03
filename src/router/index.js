@@ -32,12 +32,12 @@ const routes = [
         name: 'table',
         component: () => import('@/views/Table/index.vue'),
       },
+      {
+        path: '/quillEditor',
+        name: 'quillEditor',
+        component: () => import('@/compoments/quillEditor/index.vue'),
+      },
     ],
-  },
-  {
-    path: '/quillEditor',
-    name: 'quillEditor',
-    component: () => import('@/compoments/quillEditor/index.vue'),
   },
 ]
 

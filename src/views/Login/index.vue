@@ -56,19 +56,16 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    to top right,
-    rgb(56, 188, 240) 0%,
-    skyblue 25%,
-    rgb(5, 175, 241) 100%
-  );
+  background-image: url("../../assets/th.jpeg");
+  background-repeat: no-repeat;
+  background-size: cover;
   position: relative;
 
   .login-from {
     width: 350px;
     padding: 30px;
     box-sizing: border-box;
-    background-color: #fff0f5;
+    background-color: rgba(255, 240, 245, 0.1);
     position: absolute;
     left: 50%;
     top: 50%;
