@@ -20,6 +20,7 @@ import VueQuillEditor from 'vue-quill-editor' //调用编辑器
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+// 没时间改  加个注释
 
 registerMicroApps(
   [
